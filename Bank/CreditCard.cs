@@ -8,10 +8,11 @@ namespace Bank
 {
     class CreditCard
     {
-        public int CardNumber { get; set; }
-        public string Fullname { get; set; }
-        public int AccountNumber { get; set; }
+        public string CardNumber { get; set; }
+        public string FullName { get; set; }
+        public string AccountNumber { get; set; }
         public DateTime ExpDate { get; set; }
+        public double CardFee { get; set; }
         public int CVC { get; set; }
         public int PIN { get; set; }
     }

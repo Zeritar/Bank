@@ -5,13 +5,14 @@ namespace Bank
 {
     class Program
     {
-        string[] kontoTyper = new string[] { "Løn", "Budget", "Opsparing", "Pension" };
         static void Main(string[] args)
         {
+            // Instans af Menus-klassen
             Menus menus = new Menus();
 
             while (true)
             {
+                // Gå til velkomst-skærmen
                 menus.Welcome();
             }
         }

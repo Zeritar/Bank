@@ -11,5 +11,6 @@ namespace Bank
         public List<Costumer> costumers = new List<Costumer>();
 
         public AccountType[] accountTypes = new AccountType[3];
+
     }
 }
