@@ -8,7 +8,9 @@ namespace Bank
 {
     class Data
     {
-        public List<Costumer> costumers = new List<Costumer>();
+        public List<Customer> customers = new List<Customer>();
+
+        // TODO: Gem og læs data fra en fil
 
         public AccountType[] accountTypes = new AccountType[3];
 

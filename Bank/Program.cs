@@ -10,6 +10,12 @@ namespace Bank
             // Instans af Menus-klassen
             Menus menus = new Menus();
 
+            // Udfyld fake data
+            menus.methods.GetAccountTypes();
+            menus.methods.CreateFakeData();
+
+            // menus.CreateTransferMenu(testAccount);
+
             while (true)
             {
                 // Gå til velkomst-skærmen
