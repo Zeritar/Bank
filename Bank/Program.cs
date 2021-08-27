@@ -5,6 +5,10 @@ namespace Bank
 {
     class Program
     {
+
+        // Al kode er skrevet i fællesskab med hele gruppen.
+        // Anna, Sebastian, Nicklas, Catrine og Mike
+
         static void Main(string[] args)
         {
             // Instans af Menus-klassen
