@@ -27,6 +27,23 @@ namespace Bank
             return null;
         }
 
+        public bool VerifyUsernameInput(string usernameInput)
+        {
+            if (usernameInput != string.Empty)
+            {
+                foreach (Customer c in data.customers)
+                {
+                    if (usernameInput == c.Username)
+                        return false;
+                }
+            return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         // Metode til at oprette en ny kunde med givent brugernavn, password og fulde navn
         // og tilføje dem til listen over alle kunder
         public Customer CreateCustomer(string usernameInput, string passwordInput, string fullNameInput)

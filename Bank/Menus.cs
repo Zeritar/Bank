@@ -177,10 +177,25 @@ namespace Bank
         // Menu for oprettelse af ny bruger
         public void NewCustomerMenu()
         {
+            bool validUsername = false;
+            bool invalidInput = false;
+            string usernameInput = "";
             // Bed om et brugernavn
-            Console.Clear();
-            Console.WriteLine("Skriv dit brugernavn");
-            string usernameInput = Console.ReadLine();
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Skriv dit brugernavn");
+                if (invalidInput)
+                {
+                    Console.SetCursorPosition(0, 3);
+                    Console.WriteLine("Du kan ikke bruge det indtastede brugernavn");
+                    Console.SetCursorPosition(0, 1);
+                }
+                usernameInput = Console.ReadLine();
+                validUsername = methods.VerifyUsernameInput(usernameInput);
+                if (!validUsername)
+                    invalidInput = true;
+            } while (!validUsername);
 
             // TODO: Tjek om bruger har indtastet et brugernavn
             // TODO: Tjek om brugernavn allerede findes
@@ -203,12 +218,18 @@ namespace Bank
                     Console.WriteLine("Tryk på en vilkårlig tast for at prøve igen.");
                     Console.ReadKey();
                 }
+                else if (pass1.Length < 4)
+                {
+                    Console.WriteLine("Dit password skal være på mindst 4 karakterer.");
+                    Console.WriteLine("Tryk på en vilkårlig tast for at prøve igen.");
+                    Console.ReadKey();
+                }
                 else
                 {
                     passwordInput = pass1;
                 }
 
-            } while (pass1 != pass2);
+            } while (pass1 != pass2 || pass1.Length < 4);
 
             // Bed om brugers fulde navn
             Console.Clear();
@@ -685,7 +706,7 @@ namespace Bank
                 Console.WriteLine($"Du har oprettet et nyt kreditkort til kontoen: {currentCustomer.accounts[0].AccountType.TypeName} - {currentCustomer.accounts[0].AccountNumber}.\n");
                 Console.WriteLine($"Kortnummer:    {newCreditCard.CardNumber}");
                 Console.WriteLine($"Navn:          {newCreditCard.FullName}");
-                Console.WriteLine($"Udløbsdato:    {newCreditCard.ExpDate.Month.ToString().PadLeft(2,'0')}/{newCreditCard.ExpDate.Year.ToString()[^2..^0]}");
+                Console.WriteLine($"Udløbsdato:    {newCreditCard.ExpDate.Month.ToString().PadLeft(2, '0')}/{newCreditCard.ExpDate.Year.ToString()[^2..^0]}");
                 Console.WriteLine($"CVC:           {newCreditCard.CVC}");
                 Console.WriteLine($"PIN-kode:      {newCreditCard.PIN}");
                 Console.WriteLine($"Årligt gebyr:  {newCreditCard.CardFee}");
