@@ -40,9 +40,28 @@ namespace Bank
         {
             Console.Clear();
 
-            Console.WriteLine("foreach (CreditCard card in currentCustomer.creditCards)");
+            foreach(CreditCard creditCard in currentCustomer.creditCards)
+            {
+                Account creditCardAccount = new Account();
+
+                for (int i = 0; i < currentCustomer.accounts.Count; i++)
+                {
+                    if (creditCard.AccountNumber == currentCustomer.accounts[i].AccountNumber)
+                    {
+                        creditCardAccount = currentCustomer.accounts[i];
+                    }
+                }
+
+                Console.WriteLine($"Kortnummer:       {creditCard.CardNumber}");
+                Console.WriteLine($"Kortholder:       {creditCard.FullName}");
+                Console.WriteLine($"Udløbsdato:       {creditCard.ExpDate.Month.ToString().PadLeft(2, '0')}/{creditCard.ExpDate.Year.ToString()[^2..^0]}");
+                Console.WriteLine($"Tilknyttet konto: {creditCardAccount.AccountType.TypeName} - {creditCardAccount.AccountNumber}\n");
+            }
+
+            /*Console.WriteLine("foreach (CreditCard card in currentCustomer.creditCards)");
             Console.WriteLine("{Kortnummer}");
-            Console.WriteLine("Tilknyttet konto: {// Find konto med kontonummer i liste over kundes konti}\n\n");
+            Console.WriteLine("Tilknyttet konto: {// Find konto med kontonummer i liste over kundes konti}\n\n");*/
+
             Console.WriteLine("Tryk på en vilkårlig tast for at vende tilbage til hovedmenu");
             Console.ReadKey();
         }

@@ -132,7 +132,7 @@ namespace Bank
                 // Brug metode for at finde ud af hvad brugers input skal gøre
 
                 int inputKey = int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out inputKey) ? inputKey : 0;
-                string choice = methods.HandleMainMenuChoice(currentCustomer, customerStatus, inputKey);
+                string choice = methods.HandleMainMenuChoice(customerStatus, inputKey);
 
                 switch (choice)
                 {
@@ -401,14 +401,14 @@ namespace Bank
                     if (!isAnInt)
                     {
                         validChoice = false;
-                        Console.SetCursorPosition(0, numberOfAccounts + 2);
+                        Console.SetCursorPosition(0, numberOfAccounts + 3);
                         Console.WriteLine("Skriv tallet på den konto du vil vælge.");
-                        Console.SetCursorPosition(0, 0);
+                        Console.SetCursorPosition(0, numberOfAccounts + 2);
                         continue;
                     }
                     else
                     {
-                        if (accountChoice < numberOfAccounts)
+                        if (accountChoice <= numberOfAccounts)
                         {
                             for (int i = 1; i <= numberOfAccounts; i++)
                             {
@@ -425,9 +425,9 @@ namespace Bank
                         }
                         else
                         {
-                            Console.SetCursorPosition(0, numberOfAccounts + 2);
+                            Console.SetCursorPosition(0, numberOfAccounts + 3);
                             Console.WriteLine("Den valgte konto eksisterer ikke.");
-                            Console.SetCursorPosition(0, 0);
+                            Console.SetCursorPosition(0, numberOfAccounts + 2);
                         }
                     }
                 }
@@ -499,14 +499,14 @@ namespace Bank
                     if (!isAnInt)
                     {
                         validChoice = false;
-                        Console.SetCursorPosition(0, numberOfAccounts + 2);
+                        Console.SetCursorPosition(0, numberOfAccounts + 3);
                         Console.WriteLine("Skriv tallet på den konto du vil vælge.");
-                        Console.SetCursorPosition(0, 0);
+                        Console.SetCursorPosition(0, numberOfAccounts + 2);
                         continue;
                     }
                     else
                     {
-                        if (accountChoice < numberOfAccounts)
+                        if (accountChoice <= numberOfAccounts)
                         {
                             for (int i = 1; i <= numberOfAccounts; i++)
                             {
@@ -522,9 +522,9 @@ namespace Bank
                         }
                         else
                         {
-                            Console.SetCursorPosition(0, numberOfAccounts + 2);
+                            Console.SetCursorPosition(0, numberOfAccounts + 3);
                             Console.WriteLine("Den valgte konto eksisterer ikke.");
-                            Console.SetCursorPosition(0, 0);
+                            Console.SetCursorPosition(0, numberOfAccounts + 2);
                         }
                     }
                 }
@@ -581,7 +581,7 @@ namespace Bank
                 if (payment)
                 {
                     Console.WriteLine("=Ny betaling=");
-                    Console.WriteLine("Modtagers kontonummer: ");
+                    Console.Write("Modtagers kontonummer: ");
                     string recipient = Console.ReadLine();
                     double amount;
                     bool validAmount;
@@ -682,13 +682,13 @@ namespace Bank
             {
                 CreditCard newCreditCard = methods.CreateCreditCard(currentCustomer, currentCustomer.accounts[0]);
                 Console.Clear();
-                Console.WriteLine($"Du har oprettet et nyt kreditkort til kontoen: {currentCustomer.accounts[0].AccountType.TypeName} - {currentCustomer.accounts[0].AccountNumber}.");
-                Console.WriteLine($"Kortnummer: {newCreditCard.CardNumber}");
-                Console.WriteLine($"Navn: {newCreditCard.FullName}");
-                Console.WriteLine($"Udløbsdato: {newCreditCard.ExpDate.Month}/{newCreditCard.ExpDate.Year}");
-                Console.WriteLine($"CVC: {newCreditCard.CVC}");
-                Console.WriteLine($"PIN-kode: {newCreditCard.PIN}");
-                Console.WriteLine($"Årligt gebyr: {newCreditCard.CardFee}");
+                Console.WriteLine($"Du har oprettet et nyt kreditkort til kontoen: {currentCustomer.accounts[0].AccountType.TypeName} - {currentCustomer.accounts[0].AccountNumber}.\n");
+                Console.WriteLine($"Kortnummer:    {newCreditCard.CardNumber}");
+                Console.WriteLine($"Navn:          {newCreditCard.FullName}");
+                Console.WriteLine($"Udløbsdato:    {newCreditCard.ExpDate.Month.ToString().PadLeft(2,'0')}/{newCreditCard.ExpDate.Year.ToString()[^2..^0]}");
+                Console.WriteLine($"CVC:           {newCreditCard.CVC}");
+                Console.WriteLine($"PIN-kode:      {newCreditCard.PIN}");
+                Console.WriteLine($"Årligt gebyr:  {newCreditCard.CardFee}");
                 Console.WriteLine();
             }
             else
@@ -710,14 +710,14 @@ namespace Bank
                     if (!isAnInt)
                     {
                         validChoice = false;
-                        Console.SetCursorPosition(0, numberOfAccounts + 2);
+                        Console.SetCursorPosition(0, numberOfAccounts + 3);
                         Console.WriteLine("Skriv det tal, som tilhører den konto du vil vælge.");
-                        Console.SetCursorPosition(0, 0);
+                        Console.SetCursorPosition(0, numberOfAccounts + 2);
                         continue;
                     }
                     else
                     {
-                        if (accountChoice < numberOfAccounts)
+                        if (accountChoice <= numberOfAccounts)
                         {
                             for (int i = 1; i <= numberOfAccounts; i++)
                             {
@@ -729,22 +729,22 @@ namespace Bank
 
                                     CreditCard newCreditCard = methods.CreateCreditCard(currentCustomer, currentCustomer.accounts[i - 1]);
                                     Console.Clear();
-                                    Console.WriteLine($"Du har oprettet et nyt kreditkort til kontoen: {currentCustomer.accounts[i - 1].AccountType.TypeName} - {currentCustomer.accounts[i - 1].AccountNumber}.");
-                                    Console.WriteLine($"Kortnummer: {newCreditCard.CardNumber}");
-                                    Console.WriteLine($"Navn: {newCreditCard.FullName}");
-                                    Console.WriteLine($"Udløbsdato: {newCreditCard.ExpDate.Month}/{newCreditCard.ExpDate.Year}");
-                                    Console.WriteLine($"CVC: {newCreditCard.CVC}");
-                                    Console.WriteLine($"PIN-kode: {newCreditCard.PIN}");
-                                    Console.WriteLine($"Årligt gebyr: {newCreditCard.CardFee}");
+                                    Console.WriteLine($"Du har oprettet et nyt kreditkort til kontoen: {currentCustomer.accounts[i - 1].AccountType.TypeName} - {currentCustomer.accounts[i - 1].AccountNumber}.\n");
+                                    Console.WriteLine($"Kortnummer:    {newCreditCard.CardNumber}");
+                                    Console.WriteLine($"Navn:          {newCreditCard.FullName}");
+                                    Console.WriteLine($"Udløbsdato:    {newCreditCard.ExpDate.Month.ToString().PadLeft(2, '0')}/{newCreditCard.ExpDate.Year.ToString()[^2..^0]}");
+                                    Console.WriteLine($"CVC:           {newCreditCard.CVC}");
+                                    Console.WriteLine($"PIN-kode:      {newCreditCard.PIN}");
+                                    Console.WriteLine($"Årligt gebyr:  {newCreditCard.CardFee}");
                                     Console.WriteLine();
                                 }
                             }
                         }
                         else
                         {
-                            Console.SetCursorPosition(0, numberOfAccounts + 2);
+                            Console.SetCursorPosition(0, numberOfAccounts + 3);
                             Console.WriteLine("Den valgte konto eksisterer ikke.");
-                            Console.SetCursorPosition(0, 0);
+                            Console.SetCursorPosition(0, numberOfAccounts + 2);
                         }
                     }
                 }

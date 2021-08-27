@@ -248,7 +248,12 @@ namespace Bank
 
                 if (key == ConsoleKey.Backspace && pass.Length > 0)
                 {
+                    // Slet en karakter fra konsolvinduet
                     Console.Write("\b \b");
+
+                    // Træk sidste karakter fra password
+                    // 0 er index start, '..' betyder range, '^' betyder fromEnd: true
+                    // 1 betyder index 1, men fra højre pga. fromEnd.
                     pass = pass[0..^1];
                 }
                 else if (!char.IsControl(keyInfo.KeyChar))
@@ -302,7 +307,7 @@ namespace Bank
 
         }
 
-        public string HandleMainMenuChoice(Customer currentCustomer, CustomerStatus customerStatus, int choice)
+        public string HandleMainMenuChoice(CustomerStatus customerStatus, int choice)
         {
             string returnedChoice = "none";
 
